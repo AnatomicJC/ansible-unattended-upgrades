@@ -35,3 +35,8 @@
   with_items:
     - /var/log/unattended-upgrades/unattended-upgrades-dpkg.log
     - /var/log/unattended-upgrades/unattended-upgrades.log
+
+- name: create apt-listchanges configuration
+  copy: >
+    src=listchanges.conf dest=/etc/apt/listchanges.conf
+    owner=root group=root mode=0644
