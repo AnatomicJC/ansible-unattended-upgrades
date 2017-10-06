@@ -8,8 +8,8 @@
 
 - name: Install packages
   apt:
-    name={{ item }}
-    state=latest
+    name: "{{ item }}"
+    state: "latest"
   with_items:
     - unattended-upgrades
     - apt-listchanges
@@ -18,25 +18,31 @@
   include: reboot.yml
   when: unattended_automatic_reboot
 
-- name: create APT auto-upgrades configuration
-  copy: >
-    src=auto-upgrades dest=/etc/apt/apt.conf.d/20auto-upgrades
-    owner=root group=root mode=0644
-
-- name: create unattended-upgrades configuration
-  template: >
-    src=unattended-upgrades.j2 dest=/etc/apt/apt.conf.d/50unattended-upgrades
-    owner=root group=root mode=0644
+- name: create auto-upgrades configuration
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  with_items:
+    - src: "auto-upgrades.j2"
+      dest: "/etc/apt/apt.conf.d/20auto-upgrades"
+    - src: "unattended-upgrades.j2"
+      dest: "/etc/apt/apt.conf.d/50unattended-upgrades"
 
 - name: create log files if not exists
   file:
     path: "{{ item }}"
-    state: touch
+    state: "touch"
   with_items:
     - /var/log/unattended-upgrades/unattended-upgrades-dpkg.log
     - /var/log/unattended-upgrades/unattended-upgrades.log
 
 - name: create apt-listchanges configuration
-  copy: >
-    src=listchanges.conf dest=/etc/apt/listchanges.conf
-    owner=root group=root mode=0644
+  copy:
+    src: "listchanges.conf"
+    dest: "/etc/apt/listchanges.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
