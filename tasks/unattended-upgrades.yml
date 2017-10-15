@@ -15,7 +15,7 @@
     - apt-listchanges
 
 - name: install reboot dependencies
-  include: reboot.yml
+  import_tasks: reboot.yml
   when: unattended_automatic_reboot
 
 - name: create auto-upgrades configuration
