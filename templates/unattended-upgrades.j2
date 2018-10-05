@@ -1,6 +1,10 @@
 // Unattended-Upgrade::Origins-Pattern controls which packages are
 // upgraded.
+{% if ansible_distribution == 'Debian' %}
 Unattended-Upgrade::Origins-Pattern {
+{% elif ansible_distribution == 'Ubuntu' %}
+Unattended-Upgrade::Allowed-Origins {
+{% endif %}
 {% if unattended_origins_patterns is defined %}
   {% for origin in unattended_origins_patterns %}
     "{{ origin }}";
