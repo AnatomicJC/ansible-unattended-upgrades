@@ -68,4 +68,4 @@ unattended_apt_periodic_update_package_lists: 1
 unattended_apt_periodic_download_upgradable_packages: 1
 unattended_apt_periodic_autocleaninterval: 7
 unattended_apt_periodic_automatic_upgrades: 0
-
+unattended_cronjob_expression: False

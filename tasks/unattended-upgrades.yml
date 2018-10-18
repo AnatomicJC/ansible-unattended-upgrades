@@ -38,6 +38,7 @@
   with_items:
     - /var/log/unattended-upgrades/unattended-upgrades-dpkg.log
     - /var/log/unattended-upgrades/unattended-upgrades.log
+  changed_when: False
 
 - name: create apt-listchanges configuration
   copy:
@@ -46,3 +47,13 @@
     owner: "root"
     group: "root"
     mode: "0644"
+
+- name: Add cronjob if needed
+  copy:
+    dest: "/etc/cron.d/ansible-unttended-upgrade"
+    content: |
+      SHELL=/bin/sh
+      PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+      {{ unattended_cronjob_expression }} root [ -x /usr/bin/unattended-upgrade ] && /usr/bin/unattended-upgrade
+  when: unattended_cronjob_expression != False
