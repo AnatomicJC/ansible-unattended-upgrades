@@ -1,4 +1,5 @@
 ---
+unattended_enabled: False
 #Unattended-Upgrade::Origins-Pattern
 # Automatically upgrade packages from these origin patterns
 # e.g.: 'o=Debian,a=stable', 'o=Debian,a=stable-updates'

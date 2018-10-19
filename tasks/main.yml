@@ -1,2 +1,3 @@
  - import_tasks: unattended-upgrades.yml
+   when: unattended_enabled
    tags: unattended
