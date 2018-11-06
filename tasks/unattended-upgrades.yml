@@ -8,11 +8,8 @@
 
 - name: Install packages
   apt:
-    name: "{{ item }}"
+    name: ['unattended-upgrades', 'apt-listchanges']
     state: "latest"
-  with_items:
-    - unattended-upgrades
-    - apt-listchanges
 
 - name: install reboot dependencies
   import_tasks: reboot.yml
