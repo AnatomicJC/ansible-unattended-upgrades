@@ -13,7 +13,7 @@
 
 - name: install reboot dependencies
   import_tasks: reboot.yml
-  when: unattended_automatic_reboot
+  when: unattended_automatic_reboot|bool
 
 - name: create auto-upgrades configuration
   template:
