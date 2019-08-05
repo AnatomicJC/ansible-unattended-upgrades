@@ -53,4 +53,4 @@
       PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
       {{ unattended_cronjob_expression }} root [ -x /usr/bin/unattended-upgrade ] && /usr/bin/unattended-upgrade
-  when: unattended_cronjob_expression
+  when: unattended_cronjob_expression|length > 0
