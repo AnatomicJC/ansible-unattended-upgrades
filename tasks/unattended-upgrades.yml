@@ -9,7 +9,7 @@
 - name: Install packages
   apt:
     name: ['unattended-upgrades', 'apt-listchanges']
-    state: "latest"
+    state: "present"
 
 - name: install reboot dependencies
   import_tasks: reboot.yml
@@ -53,4 +53,4 @@
       PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
       {{ unattended_cronjob_expression }} root [ -x /usr/bin/unattended-upgrade ] && /usr/bin/unattended-upgrade
-  when: unattended_cronjob_expression != False
+  when: unattended_cronjob_expression
