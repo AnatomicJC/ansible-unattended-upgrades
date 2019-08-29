@@ -77,3 +77,13 @@ Unattended-Upgrade::IgnoreAppsRequireRestart "true";
 // Use apt bandwidth limit feature, this example limits the download
 // speed to 70kb/sec
 //Acquire::http::Dl-Limit "70";
+{% if unattended_keep_conffiles %}
+// If you want to keep original config files while doing automatic updates
+// I.e. 
+// Package 'xxx' has conffile prompt and needs to be upgraded manually
+// package 'xxx' not upgraded
+Dpkg::Options {
+   "--force-confdef";
+   "--force-confold";
+};
+{% endif %}

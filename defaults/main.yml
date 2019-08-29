@@ -65,6 +65,12 @@ unattended_automatic_reboot_time: false
 # I.e. "XB-Upgrade-Requires: app-restart" is set in the debian/control file
 unattended_ignore_apps_require_restart: false
 
+#If you want to keep original config files while doing automatic updates
+#I.e. 
+#Package 'xxx' has conffile prompt and needs to be upgraded manually
+#package 'xxx' not upgraded
+unattended_keep_conffiles: false
+
 unattended_apt_periodic_update_package_lists: 1
 unattended_apt_periodic_download_upgradable_packages: 1
 unattended_apt_periodic_autocleaninterval: 7
